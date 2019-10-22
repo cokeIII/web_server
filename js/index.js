@@ -174,13 +174,36 @@ $(document).ready(function(){
             type: 'post',
             data: { route: $(this).attr("id") },  // data to submit
             success: function (data, status) {
-                console.dir('status: ' + status + ', data: ' + data);
-                $(document).find("#bgMap").html(data)
+                console.dir('status: ' + status + ', data: ' + data.Tmaps);
+                $(document).find("#bgMap").html(data.maps)
+                $(document).find("#Tmaps").html(data.Tmaps)
             },
             error: function ( errorMessage) {
                 console.dir('Error' + errorMessage);
             }
         })
-
     })
+    $(document).on("click",".detailPoint",function(){
+        $.ajax({
+            url: 'LogUser/logUser.php',
+            dataType:'json',
+            type: 'post',
+            data: { datailPoint: true, uuid: $(this).attr("val") },  // data to submit
+            success: function (data, status) {
+                console.dir('status: ' + status + ', data: ' + data);
+                $(document).find("#modalLoguser").html(data)
+                $('#tableUserDetail').DataTable();
+            },
+            error: function ( errorMessage) {
+                console.dir('Error' + errorMessage);
+            }
+        })
+    }) 
+    $(document).on("click",".pic-card",function(){
+        $(document).find("#picCard").attr("src","pic_cards/"+$(this).attr("val"))
+    })  
+    $(document).on("click",".close-pic-modal",function(){
+        $(document).find(".pic-modal").modal('toggle');
+    })  
+
 })

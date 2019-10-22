@@ -80,10 +80,66 @@
     socket.on('/',function(data){
         console.log(data)
     })
+    socket.on('updateUserLog',function(data){
+        console.log(data)
+    })
+
 
   </script>
   <script src="js/index.js"></script>
 
 </body>
+
+<!-- Modal Detail-->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content" style="width: 800px;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Users</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table" id="tableUserDetail">
+          <thead class="thead-dark">
+          <tr>
+              <th scope="col">ID card</th>
+              <th scope="col">user name</th>
+              <th scope="col">tel</th>
+              <th scope="col">picture</th>
+              <th scope="col">Application date</th>
+              <th scope="col">status</th>
+          </tr>
+          </thead>
+          <tbody id="modalLoguser">
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+<!-- Modal Picture-->
+<div id="picModal" class="modal fade pic-modal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content" style="width: 650px;">
+      <div class="modal-header">
+        <button type="button" class="close close-pic-modal" >&times;</button>
+        <h4 class="modal-title">Picture Card</h4>
+      </div>
+      <div class="modal-body">
+        <img id="picCard" src="" width="500" height="300"/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default close-pic-modal" >Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 </html>

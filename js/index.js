@@ -150,7 +150,6 @@ $(document).ready(function(){
 
     //Log User
     $(document).on("click","#menuLogUser",function(){
-
         $.ajax({
             url: 'LogUser/logUser.php',
             dataType:'json',
@@ -158,6 +157,7 @@ $(document).ready(function(){
             data: { logUser: true },  // data to submit
             success: function (data, status) {
                 console.dir('status: ' + status + ', data: ' + data);
+                console.dir(data)
                 $("#display").html(data)
                 $(document).find("#nameRoute").html('ROUTE 1')
             },

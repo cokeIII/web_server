@@ -21,3 +21,13 @@
 .txt-route{
     font-size: 24px;
 }
+.detours{
+    background-color: rgb(196, 41, 41);
+}
+.fnish{
+    background-color: rgb(74, 223, 99);
+}
+.traveling{
+    background-color: rgb(234, 245, 79);
+}
+

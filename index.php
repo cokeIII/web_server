@@ -19,6 +19,7 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
   <link href="css/index.css" rel="stylesheet">
+  <?php include "connect.php"; ?>
 
 </head>
 
@@ -69,6 +70,29 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
   <!-- <script src="https://code.jquery.com/jquery-1.11.1.js"></script> -->
   <script>
+    
+    var lookupMaps = {}
+      // localStorage.clear();
+    if(!localStorage["lookupDetours"]){
+      localStorage["lookupDetours"] = "{}"
+    }
+    var lookupDetours = JSON.parse(localStorage["lookupDetours"])
+    console.log(lookupDetours)
+    $(document).on("click","#menuLogUser",function(){
+      $.ajax({
+          url: 'LogUser/logUser.php',
+          dataType:'json',
+          type: 'post',
+          data: { lookup: true },  // data to submit
+          success: function (data, status) {
+            lookupMaps = data
+          },
+          error: function ( errorMessage) {
+              console.dir('Error' + errorMessage);
+          }
+      })
+    })
+
     var socket = io.connect('http://localhost:3000');
     socket.on('connect',function(data) {
         // console.log(data)
@@ -82,6 +106,14 @@
     })
     socket.on('updateUserLog',function(data){
         console.log(data)
+        console.log(lookupMaps[data.uuid])
+        lookupDetours[data.deviceId]= data.status
+        localStorage["lookupDetours"] = JSON.stringify(lookupDetours)
+        console.dir(localStorage["lookupDetours"])
+        console.log(Object.keys(lookupDetours).length)
+        let id = "#td"+data.uuid.replace(/\:/g, '');
+        console.log(id)
+        $(document).find(id).html("5")
     })
 
 

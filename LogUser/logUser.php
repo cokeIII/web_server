@@ -7,23 +7,32 @@ function countUser($conn,$uuid){
     $rowUserCount = mysqli_fetch_array($resUserCount);
     return $rowUserCount["num"];
 }
-
+if(!empty($_REQUEST["lookup"])){
+    $sqlGetMaps = "select uuid,route from maps";
+    $resMaps = mysqli_query($conn,$sqlGetMaps);
+    while($rowMaps = mysqli_fetch_array($resMaps)){
+        $lookupMaps[$rowMaps['uuid']] = $rowMaps['route'];
+    }
+    echo json_encode($lookupMaps);
+}
 if(!empty($_REQUEST["logUser"])){ 
     $sqlGetMap = "select * from maps where route = 1";
     $sqlGetOpt = "select route from maps group by route";
     $resOpt = mysqli_query($conn,$sqlGetOpt);
     $resMap = mysqli_query($conn,$sqlGetMap);
+    
     $route = '';
     while($rowOpt = mysqli_fetch_array($resOpt)){
         $route.='<div class="col-md-1 btn menu-log" id="'.$rowOpt["route"].'">'.$rowOpt["route"].'</div>'; 
         
     }
+
     $maps = '';
     $Tmaps = '';
     while($rowMap = mysqli_fetch_array($resMap)){
-        $Tmaps.= '<tr>
+        $Tmaps.= '<tr id="tr'.str_replace(":","",$rowMap["uuid"]).'">
                     <th scope="row">'.$rowMap["name"].'</th>
-                    <td>'.countUser($conn,$rowMap["uuid"]).'</td>
+                    <td id="td'.str_replace(":","",$rowMap["uuid"]).'">'.countUser($conn,$rowMap["uuid"]).'</td>
                     <td><a href="#" val="'.$rowMap["uuid"].'" class="detailPoint" data-toggle="modal" data-target="#myModal">detail</a></td>
                 </tr>';
  
@@ -67,7 +76,6 @@ if(!empty($_REQUEST["logUser"])){
             </div>
         </div>
     </div>';
-
     echo json_encode($data);
 }
 if(!empty($_REQUEST["route"])){ 
@@ -78,7 +86,7 @@ if(!empty($_REQUEST["route"])){
     $resMap = mysqli_query($conn,$sqlGetMap);
 
     while($rowMap = mysqli_fetch_array($resMap)){
-        $Tmaps.= '<tr>
+        $Tmaps.= '<tr id="'.$rowMap["uuid"].'">
             <th scope="row">'.$rowMap["name"].'</th>
             <td>'.countUser($conn,$rowMap["uuid"]).'</td>
             <td><a href="#" val="'.$rowMap["uuid"].'" class="detailPoint" data-toggle="modal" data-target="#myModal" >detail</a></td>
@@ -96,8 +104,6 @@ if(!empty($_REQUEST["route"])){
                             font-size: 12px;
                 ">'.$rowMap["name"].'</div>';  
     }
-    $mapsData["maps"] = $maps;
-    $mapsData["Tmaps"] = $Tmaps;
     echo json_encode($mapsData);
 }
 if(!empty($_REQUEST["datailPoint"])){ 
@@ -106,7 +112,7 @@ if(!empty($_REQUEST["datailPoint"])){
     $sqlGetDetail = "select u.*,l.* from user_log l, users u where l.device_id = u.device_id and l.status != 'finish' and l.uuid = '".$uuid."' and date(l.date_time) = CURRENT_DATE";
     $resDetail = mysqli_query($conn,$sqlGetDetail);
     while($rowDetail = mysqli_fetch_array($resDetail)){
-        $Tdetail.= '<tr>
+        $Tdetail.= '<tr class="'.$rowDetail["status"].'">
             <th scope="row">'.$rowDetail["user_id"].'</th>
             <td>'.$rowDetail["name"].'</td>
             <td>'.$rowDetail["phone_number"].'</td>
@@ -116,5 +122,13 @@ if(!empty($_REQUEST["datailPoint"])){
         </tr>';
     }
     echo json_encode($Tdetail);
+}
+if(!empty($_REQUEST["TcountUsers"])){
+    $sqlUserCounts = "select uuid,count(*) as num  from user_log where uuid in(select uuid from maps) and status != 'finish'  and date(date_time) = CURRENT_DATE group by uuid";
+    $resUserCounts = mysqli_query($conn,$sqlUserCounts);
+    while($rowUserCounts = mysqli_fetch_array($resUserCounts)){
+        $data[$rowUserCounts["uuid"]] = $rowUserCounts["num"];
+    }
+    echo json_encode($data);
 }
 ?>

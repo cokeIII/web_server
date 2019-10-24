@@ -105,15 +105,56 @@
         console.log(data)
     })
     socket.on('updateUserLog',function(data){
-        console.log(data)
-        console.log(lookupMaps[data.uuid])
-        lookupDetours[data.deviceId]= data.status
-        localStorage["lookupDetours"] = JSON.stringify(lookupDetours)
-        console.dir(localStorage["lookupDetours"])
-        console.log(Object.keys(lookupDetours).length)
-        let id = "#td"+data.uuid.replace(/\:/g, '');
-        console.log(id)
-        $(document).find(id).html("5")
+      $(document).find(".menu-log").removeClass("detours")
+      $.each( lookupDetours, function( key, value ) {
+        delete lookupDetours[key][data.deviceId]
+      })
+      if(!lookupDetours[data.uuid]) {lookupDetours[data.uuid] = {}}
+      let deviceId = data.deviceId
+      lookupDetours[data.uuid][deviceId] = data.status
+      localStorage["lookupDetours"] = JSON.stringify(lookupDetours)
+      console.log(lookupDetours)
+      if(Object.keys(lookupDetours).length){
+        $.each( lookupMaps, function( key, value ) {
+          let uuid = key
+          let detours = false
+          $.each( lookupDetours[key], function( key, value ) {
+            console.log(value)
+            if(value = "detours"){
+              detours = true
+              $(document).find("#"+lookupMaps[uuid]).addClass("detours")
+              return
+            }
+          })
+          if(detours){
+            console.log(lookupMaps[uuid])
+            $(document).find("#tr"+uuid.replace(/\:/g, '')).addClass("detours")
+          } else {
+            $(document).find("#tr"+uuid.replace(/\:/g, '')).removeClass("detours")
+          }
+        })
+      }
+      $.ajax({
+          url: 'LogUser/logUser.php',
+          dataType:'json',
+          type: 'post',
+          data: { TcountUsers: true},  // data to submit
+          success: function (data, status) {
+              // console.dir('status: ' + status + ', data: ' + data);
+              // console.log(data)
+              $.each( lookupMaps, function( key, value ) {
+                let id = "#td"+key.replace(/\:/g, '')
+                if(data[id]){
+                  $(document).find(id).html(data[id])
+                } else {
+                  $(document).find(id).html('0')
+                }
+              });
+          },
+          error: function ( errorMessage) {
+              console.dir('Error' + errorMessage);
+          }
+      })
     })
 
 

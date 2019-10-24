@@ -10,7 +10,6 @@ $(document).ready(function(){
             type: 'post',
             data: { createMap: true },  // data to submit
             success: function (data, status) {
-                console.dir('status: ' + status + ', data: ' + data);
                 $("#display").html(data)
             },
             error: function ( errorMessage) {
@@ -26,7 +25,6 @@ $(document).ready(function(){
             type: 'post',
             data: { route: $(this).val() },  // data to submit
             success: function (data, status) {
-                console.dir('status: ' + status + ', data: ' + data);
                 $(document).find("#bgMap").html(data)
             },
             error: function ( errorMessage) {
@@ -86,7 +84,6 @@ $(document).ready(function(){
             type: 'post',
             data: dataMap,  // data to submit
             success: function (data, status) {
-                console.dir('status: ' + status + ', data: ' + data);
                 if(data){
                     info("success"," Save Map ")
                 } else {
@@ -156,8 +153,6 @@ $(document).ready(function(){
             type: 'post',
             data: { logUser: true },  // data to submit
             success: function (data, status) {
-                console.dir('status: ' + status + ', data: ' + data);
-                console.dir(data)
                 $("#display").html(data)
                 $(document).find("#nameRoute").html('ROUTE 1')
             },
@@ -167,6 +162,7 @@ $(document).ready(function(){
         })
     })
     $(document).on("click",".menu-log",function(){
+        console.log($(this).attr("id"))
         $(document).find("#nameRoute").html('ROUTE '+$(this).attr("id"))
         $.ajax({
             url: 'LogUser/logUser.php',
@@ -174,7 +170,6 @@ $(document).ready(function(){
             type: 'post',
             data: { route: $(this).attr("id") },  // data to submit
             success: function (data, status) {
-                console.dir('status: ' + status + ', data: ' + data.Tmaps);
                 $(document).find("#bgMap").html(data.maps)
                 $(document).find("#Tmaps").html(data.Tmaps)
             },
@@ -190,7 +185,6 @@ $(document).ready(function(){
             type: 'post',
             data: { datailPoint: true, uuid: $(this).attr("val") },  // data to submit
             success: function (data, status) {
-                console.dir('status: ' + status + ', data: ' + data);
                 $(document).find("#modalLoguser").html(data)
                 $('#tableUserDetail').DataTable();
             },

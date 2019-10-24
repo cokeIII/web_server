@@ -7,6 +7,15 @@ function countUser($conn,$uuid){
     $rowUserCount = mysqli_fetch_array($resUserCount);
     return $rowUserCount["num"];
 }
+function checkDetours($conn,$uuid){
+    $sqlcheckDetours = "select uuid,status from user_log where uuid = '".$uuid."' and date(date_time) = CURRENT_DATE";
+    $rescheckDetours = mysqli_query($conn,$sqlcheckDetours);
+    while($rowcheckDetours = mysqli_fetch_array($rescheckDetours)){
+        if($rowcheckDetours["status"] == "detours")
+            return $rowcheckDetours["status"];
+    }
+}
+
 if(!empty($_REQUEST["lookup"])){
     $sqlGetMaps = "select uuid,route from maps";
     $resMaps = mysqli_query($conn,$sqlGetMaps);
@@ -30,7 +39,7 @@ if(!empty($_REQUEST["logUser"])){
     $maps = '';
     $Tmaps = '';
     while($rowMap = mysqli_fetch_array($resMap)){
-        $Tmaps.= '<tr id="tr'.str_replace(":","",$rowMap["uuid"]).'">
+        $Tmaps.= '<tr class="'.checkDetours($conn,$rowMap["uuid"]).'" id="tr'.str_replace(":","",$rowMap["uuid"]).'">
                     <th scope="row">'.$rowMap["name"].'</th>
                     <td id="td'.str_replace(":","",$rowMap["uuid"]).'">'.countUser($conn,$rowMap["uuid"]).'</td>
                     <td><a href="#" val="'.$rowMap["uuid"].'" class="detailPoint" data-toggle="modal" data-target="#myModal">detail</a></td>
@@ -86,9 +95,9 @@ if(!empty($_REQUEST["route"])){
     $resMap = mysqli_query($conn,$sqlGetMap);
 
     while($rowMap = mysqli_fetch_array($resMap)){
-        $Tmaps.= '<tr id="'.$rowMap["uuid"].'">
+        $Tmaps.= '<tr class="'.checkDetours($conn,$rowMap["uuid"]).'" id="tr'.str_replace(":","",$rowMap["uuid"]).'">
             <th scope="row">'.$rowMap["name"].'</th>
-            <td>'.countUser($conn,$rowMap["uuid"]).'</td>
+            <td id="td'.str_replace(":","",$rowMap["uuid"]).'">'.countUser($conn,$rowMap["uuid"]).'</td>
             <td><a href="#" val="'.$rowMap["uuid"].'" class="detailPoint" data-toggle="modal" data-target="#myModal" >detail</a></td>
         </tr>';
 
@@ -104,6 +113,8 @@ if(!empty($_REQUEST["route"])){
                             font-size: 12px;
                 ">'.$rowMap["name"].'</div>';  
     }
+    $mapsData['Tmaps'] = $Tmaps;
+    $mapsData['maps'] = $maps;
     echo json_encode($mapsData);
 }
 if(!empty($_REQUEST["datailPoint"])){ 
@@ -124,10 +135,12 @@ if(!empty($_REQUEST["datailPoint"])){
     echo json_encode($Tdetail);
 }
 if(!empty($_REQUEST["TcountUsers"])){
+    $data = [];
     $sqlUserCounts = "select uuid,count(*) as num  from user_log where uuid in(select uuid from maps) and status != 'finish'  and date(date_time) = CURRENT_DATE group by uuid";
     $resUserCounts = mysqli_query($conn,$sqlUserCounts);
     while($rowUserCounts = mysqli_fetch_array($resUserCounts)){
-        $data[$rowUserCounts["uuid"]] = $rowUserCounts["num"];
+        $keys = "#td".str_replace(":","",$rowUserCounts["uuid"]);
+        $data[$keys] = $rowUserCounts["num"];
     }
     echo json_encode($data);
 }

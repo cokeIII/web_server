@@ -15,7 +15,7 @@
           <a class="dropdown-item" href="#" id="menuCreate">Create</a>
           <div class="dropdown-divider"></div>
           <h6 class="dropdown-header">Manage Map:</h6>
-          <a class="dropdown-item" href="#">Manage</a>
+          <a class="dropdown-item" href="#" id="menuManageMap">Manage</a>
         </div>
       </li>
       <li class="nav-item">

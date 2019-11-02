@@ -37,7 +37,7 @@
     <div id="content-wrapper">
 
       <div class="container-fluid">
-        <div id="info"></div>
+        <div style="height:80px;"><div id="info"></div></div>
         <div id="display"></div>
       </div>
       <!-- /.container-fluid -->
@@ -193,7 +193,8 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
-
+  </div>
+</div>
 <!-- Modal Picture-->
 <div id="picModal" class="modal fade pic-modal" role="dialog">
   <div class="modal-dialog">
@@ -209,6 +210,57 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default close-pic-modal" >Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal editMaps-->
+<div id="editMapsModal" class="modal fade mapsEdit-modal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close "  data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit</h4>
+      </div>
+      <div class="modal-body">
+        <form action="javascript:void(0);">
+          <div class="form-group">
+            <label for="uuidEdit">UUID :</label>
+            <input type="text" class="form-control" id="uuidEdit" readonly>
+          </div>
+          <div class="form-group">
+            <label for="xEdit">x:</label>
+            <input type="text" class="form-control" id="xEdit" required>
+          </div>
+          <div class="form-group">
+            <label for="yEdit">y:</label>
+            <input type="text" class="form-control" id="yEdit" required>
+          </div>
+          <div class="form-group">
+            <label for="nameEdit">name:</label>
+            <input type="text" class="form-control" id="nameEdit" required>
+          </div>
+          <div class="form-group">
+            <label for="routeEdit">route:</label>
+            <input type="number" class="form-control" id="routeEdit" required>
+          </div>
+          <div class="form-group">
+            <label for="statusEdit">status:</label>
+            <select id="statusEdit" class="form-control" required> 
+              <option value="S">S</option> 
+              <option value="N">N</option> 
+              <option value="E">E</option> 
+            </select>
+          </div>
+          <button type="submit" class="btn btn-warning" id="submitEditMaps">Edit</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default"  data-dismiss="modal">Close</button>
       </div>
     </div>
 

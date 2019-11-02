@@ -97,14 +97,6 @@ $(document).ready(function(){
 
     })
     function info(status,text){
-        $(function() {
-            $('<div>Success</div>')
-            .insertBefore('#btnSubmit')
-            .delay(3000)
-            .fadeOut(function() {
-              $(this).remove(); 
-            });
-        });
         if(status == "success"){
             $(function() {
                 $('<div class = "alert alert-success" ><strong>Success !</strong>'+text+'</div>')
@@ -200,4 +192,70 @@ $(document).ready(function(){
         $(document).find(".pic-modal").modal('toggle');
     })  
 
+    //manageMap
+    function getMaps(){
+        $.ajax({
+            url: 'ManageMap/manageMap.php',
+            dataType:'json',
+            type: 'post',
+            data: { getData: true },  // data to submit
+            success: function (data, status) {
+                $("#display").html(data)
+                $('#tableMaps').DataTable();
+            },
+            error: function ( errorMessage) {
+                console.dir('Error' + errorMessage);
+            }
+        })
+    }
+    $(document).on("click","#menuManageMap",function(){
+        getMaps()
+    })
+    $(document).on("click",".mapsEdit",function(){
+        $.ajax({
+            url: 'ManageMap/manageMap.php',
+            dataType:'json',
+            type: 'post',
+            data: { getDetail: true, uuid:$(this).attr("id")},  // data to submit
+            success: function (data, status) {
+                console.log(data)
+                $(document).find("#uuidEdit").val(data.uuid);
+                $(document).find("#xEdit").val(data.x);
+                $(document).find("#yEdit").val(data.y);
+                $(document).find("#nameEdit").val(data.name);
+                $(document).find("#routeEdit").val(data.route);
+                $(document).find("#statusEdit").val(data.map_status);
+            },
+            error: function ( errorMessage) {
+                console.dir('Error' + errorMessage);
+            }
+        })
+    })
+    $(document).on("click","#submitEditMaps",function(){
+        $.ajax({
+            url: 'ManageMap/manageMap.php',
+            dataType:'json',
+            type: 'post',
+            data: { 
+                editMaps: true, 
+                uuid: $(document).find("#uuidEdit").val(),
+                x: $(document).find("#xEdit").val(),
+                y: $(document).find("#yEdit").val(),
+                name: $(document).find("#nameEdit").val(),
+                route: $(document).find("#routeEdit").val(),
+                status: $(document).find("#statusEdit").val(),
+            },  // data to submit
+            success: function (data, status) {
+                console.log(data)
+                if(data){
+                    info("success","Edit Success")
+                }
+                getMaps()
+                $(document).find(".mapsEdit-modal").modal('toggle');
+            },
+            error: function ( errorMessage) {
+                console.dir('Error' + errorMessage);
+            }
+        })
+    })
 })

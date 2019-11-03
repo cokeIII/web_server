@@ -249,6 +249,8 @@ $(document).ready(function(){
                 console.log(data)
                 if(data){
                     info("success","Edit Success")
+                } else {
+                    info("danger","Edit Fail")
                 }
                 getMaps()
                 $(document).find(".mapsEdit-modal").modal('toggle');
@@ -258,4 +260,57 @@ $(document).ready(function(){
             }
         })
     })
+    $(document).on("click","#submitInsertMaps",function(){
+        $.ajax({
+            url: 'ManageMap/manageMap.php',
+            dataType:'json',
+            type: 'post',
+            data: { 
+                insertMaps: true, 
+                uuid: $(document).find("#uuidInsert").val(),
+                x: $(document).find("#xInsert").val(),
+                y: $(document).find("#yInsert").val(),
+                name: $(document).find("#nameInsert").val(),
+                route: $(document).find("#routeInsert").val(),
+                status: $(document).find("#statusInsert").val(),
+            },  // data to submit
+            success: function (data, status) {
+                console.log(data)
+                if(data){
+                    info("success","Insert Success")
+                } else {
+                    info("danger","Insert Fail")
+                }
+                getMaps()
+                $(document).find(".mapsInsert-modal").modal('toggle');
+            },
+            error: function ( errorMessage) {
+                console.dir('Error' + errorMessage);
+            }
+        })
+    })
+    $(document).on("click",".submitDeleteMaps",function(){
+        $.ajax({
+            url: 'ManageMap/manageMap.php',
+            dataType:'json',
+            type: 'post',
+            data: { 
+                deleteMaps: true, 
+                uuid: $(this).attr("id"),
+            },  // data to submit
+            success: function (data, status) {
+                console.log(data)
+                if(data){
+                    info("success","Delete Success")
+                } else {
+                    info("danger","Delete Fail")
+                }
+                getMaps()
+            },
+            error: function ( errorMessage) {
+                console.dir('Error' + errorMessage);
+            }
+        })
+    })
+
 })

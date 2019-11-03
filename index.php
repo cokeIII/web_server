@@ -37,7 +37,7 @@
     <div id="content-wrapper">
 
       <div class="container-fluid">
-        <div style="height:80px;"><div id="info"></div></div>
+        <div style="height:50px;"><div id="info"></div></div>
         <div id="display"></div>
       </div>
       <!-- /.container-fluid -->
@@ -224,7 +224,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close "  data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edit</h4>
+        <h4 class="modal-title">Edit Map</h4>
       </div>
       <div class="modal-body">
         <form action="javascript:void(0);">
@@ -234,11 +234,11 @@
           </div>
           <div class="form-group">
             <label for="xEdit">x:</label>
-            <input type="text" class="form-control" id="xEdit" required>
+            <input type="number" class="form-control" id="xEdit" required>
           </div>
           <div class="form-group">
             <label for="yEdit">y:</label>
-            <input type="text" class="form-control" id="yEdit" required>
+            <input type="number" class="form-control" id="yEdit" required>
           </div>
           <div class="form-group">
             <label for="nameEdit">name:</label>
@@ -251,12 +251,63 @@
           <div class="form-group">
             <label for="statusEdit">status:</label>
             <select id="statusEdit" class="form-control" required> 
-              <option value="S">S</option> 
               <option value="N">N</option> 
+              <option value="S">S</option> 
               <option value="E">E</option> 
             </select>
           </div>
           <button type="submit" class="btn btn-warning" id="submitEditMaps">Edit</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default"  data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal insertMaps-->
+<div id="insertMapsModal" class="modal fade mapsInsert-modal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close "  data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Insert Map</h4>
+      </div>
+      <div class="modal-body">
+        <form action="javascript:void(0);">
+          <div class="form-group">
+            <label for="uuidInsert">UUID :</label>
+            <input type="text" class="form-control" id="uuidInsert" required>
+          </div>
+          <div class="form-group">
+            <label for="xInsert">x:</label>
+            <input type="number" class="form-control" id="xInsert" required>
+          </div>
+          <div class="form-group">
+            <label for="yInsert">y:</label>
+            <input type="number" class="form-control" id="yInsert" required>
+          </div>
+          <div class="form-group">
+            <label for="nameInsert">name:</label>
+            <input type="text" class="form-control" id="nameInsert" required>
+          </div>
+          <div class="form-group">
+            <label for="routeInsert">route:</label>
+            <input type="number" class="form-control" id="routeInsert" required>
+          </div>
+          <div class="form-group">
+            <label for="statusInsert">status:</label>
+            <select id="statusInsert" class="form-control" required> 
+              <option value="N">N</option> 
+              <option value="S">S</option> 
+              <option value="E">E</option> 
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary" id="submitInsertMaps">Insert</button>
         </form>
       </div>
       <div class="modal-footer">

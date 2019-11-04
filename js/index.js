@@ -313,4 +313,65 @@ $(document).ready(function(){
         })
     })
 
+    //manageUsers
+    function getUsers(){
+        $.ajax({
+            url: 'Users/users.php',
+            dataType:'json',
+            type: 'post',
+            data: { getData: true },  // data to submit
+            success: function (data, status) {
+                $("#display").html(data)
+                $('#tableUsers').DataTable();
+            },
+            error: function ( errorMessage) {
+                console.dir('Error' + errorMessage);
+            }
+        })
+    }
+    $(document).on("click","#menuUsers",function(){
+        getUsers()
+    })
+    $(document).on("click",".usersEdit",function(){
+        $.ajax({
+            url: 'Users/users.php',
+            dataType:'json',
+            type: 'post',
+            data: { getDetail: true, device_id:$(this).attr("id")},  // data to submit
+            success: function (data, status) {
+                console.log(data)
+                $(document).find("#device_idEdit").val(data.device_id)
+                $(document).find("#user_idEdit").val(data.user_id)
+                $(document).find("#nameUEdit").val(data.name)
+                $(document).find("#phone_numberEdit").val(data.phone_number)
+            },
+            error: function ( errorMessage) {
+                console.dir('Error' + errorMessage);
+            }
+        })
+    })
+    $("#formEditUsers").on("submit",function(e){
+        $.ajaxSetup({
+            cache: false,
+            contentType: false,
+            processData: false
+        }); 
+        e.preventDefault()
+         
+       var formData = new FormData($(this)[0])
+        $.post("Users/users.php",formData,function(data){
+            console.log(data); 
+            if(data){
+                info("success","Edit Success")
+            } else {
+                info("danger","Edit Fail")
+            }
+            getUsers()
+            $(document).find(".usersEdit-modal").modal('toggle');
+        });
+    })
+    $(document).on("click",".pic-users",function(){
+        console.log($(this).attr("val"))
+        // $(document).find("#picUsers").attr("src","../pic_cards/"+$(this).attr("val"))
+    })    
 })

@@ -52,7 +52,9 @@
   <!-- /#wrapper -->
 
   <!-- Bootstrap core JavaScript-->
+  <!-- <link href="css/uploadfile.css" rel="stylesheet"> -->
   <script src="vendor/jquery/jquery.min.js"></script>
+  <!-- <script src="js/jquery.uploadfile.min.js"></script> -->
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
@@ -68,7 +70,6 @@
   <script src="js/sb-admin.min.js"></script>
   <!--  Script this page -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
-  <!-- <script src="https://code.jquery.com/jquery-1.11.1.js"></script> -->
   <script>
     
     var lookupMaps = {}
@@ -318,4 +319,108 @@
   </div>
 </div>
 
+<!-- Modal editUsers-->
+<div id="editUsersModal" class="modal fade usersEdit-modal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close "  data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Users</h4>
+      </div>
+      <div class="modal-body">
+        <form action="" id="formEditUsers">
+        <input type="hidden" name="editUsers" value="true">
+        <input type="hidden" name="device_idEdit" class="form-control" id="device_idEdit">
+          <div class="form-group">
+            <label for="users_idEdit">ID :</label>
+            <input type="text" name="user_idEdit" class="form-control" id="user_idEdit" >
+          </div>
+          <div class="form-group">
+            <label for="nameUEdit">name:</label>
+            <input type="text" name="nameUEdit" class="form-control" id="nameUEdit" >
+          </div>
+          <div class="form-group">
+            <label for="phone_numberEdit">phone:</label>
+            <input type="number" name="phone_numberEdit" class="form-control" id="phone_numberEdit" required>
+          </div>
+          <div class="form-group">
+            <label for="picEdit">picture:</label>
+            <input type="file" name="picEdit" class="form-control" id="picEdit">
+          </div>
+          <button type="submit" class="btn btn-warning" id="submitEditUsers">Edit</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default"  data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal insertUsers-->
+<div id="insertUsersModal" class="modal fade usersInsert-modal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close "  data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Insert Users</h4>
+      </div>
+      <div class="modal-body">
+        <form action="javascript:void(0);" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="device_idInsert">Device ID :</label>
+            <input type="text" class="form-control" id="device_idInsert" required>
+          </div>
+          <div class="form-group">
+            <label for="users_idInsert">ID :</label>
+            <input type="text" class="form-control" id="users_idInsert" >
+          </div>
+          <div class="form-group">
+            <label for="nameUInsert">name:</label>
+            <input type="text" class="form-control" id="nameUInsert" >
+          </div>
+          <div class="form-group">
+            <label for="phon_numberInsert">phone:</label>
+            <input type="number" class="form-control" id="phon_numberInsert" required>
+          </div>
+          <div class="form-group">
+            <label for="picInsert">picture:</label>
+            <input type="file" class="form-control" id="picInsert" >
+          </div>
+          <button type="submit" class="btn btn-warning" id="submitInsertUsers">Insert</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default"  data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal pictUsers-->
+<div id="picUsersModal" class="modal fade usersPic-modal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content" style="width: 600px;">
+      <div class="modal-header">
+        <button type="button" class="close "  data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Pic Users</h4>
+      </div>
+      <div class="modal-body" >
+        <img src="pic_cards/1234567890.jpg" alt="" id="picUsers" width="500" height="350">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default"  data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 </html>

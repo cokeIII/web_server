@@ -290,27 +290,29 @@ $(document).ready(function(){
         })
     })
     $(document).on("click",".submitDeleteMaps",function(){
-        $.ajax({
-            url: 'ManageMap/manageMap.php',
-            dataType:'json',
-            type: 'post',
-            data: { 
-                deleteMaps: true, 
-                uuid: $(this).attr("id"),
-            },  // data to submit
-            success: function (data, status) {
-                console.log(data)
-                if(data){
-                    info("success","Delete Success")
-                } else {
-                    info("danger","Delete Fail")
+        if(confirm("Do you want to delete the information?")){
+            $.ajax({
+                url: 'ManageMap/manageMap.php',
+                dataType:'json',
+                type: 'post',
+                data: { 
+                    deleteMaps: true, 
+                    uuid: $(this).attr("id"),
+                },  // data to submit
+                success: function (data, status) {
+                    console.log(data)
+                    if(data){
+                        info("success","Delete Success")
+                    } else {
+                        info("danger","Delete Fail")
+                    }
+                    getMaps()
+                },
+                error: function ( errorMessage) {
+                    console.dir('Error' + errorMessage);
                 }
-                getMaps()
-            },
-            error: function ( errorMessage) {
-                console.dir('Error' + errorMessage);
-            }
-        })
+            })
+        }
     })
 
     //manageUsers
@@ -319,7 +321,7 @@ $(document).ready(function(){
             url: 'Users/users.php',
             dataType:'json',
             type: 'post',
-            data: { getData: true },  // data to submit
+            data: { getData: true },
             success: function (data, status) {
                 $("#display").html(data)
                 $('#tableUsers').DataTable();
@@ -339,7 +341,7 @@ $(document).ready(function(){
             type: 'post',
             data: { getDetail: true, device_id:$(this).attr("id")},  // data to submit
             success: function (data, status) {
-                console.log(data)
+   
                 $(document).find("#device_idEdit").val(data.device_id)
                 $(document).find("#user_idEdit").val(data.user_id)
                 $(document).find("#nameUEdit").val(data.name)
@@ -366,12 +368,67 @@ $(document).ready(function(){
             } else {
                 info("danger","Edit Fail")
             }
+            $.ajaxSetup({
+                cache: false,
+                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                processData: true
+            });           
             getUsers()
             $(document).find(".usersEdit-modal").modal('toggle');
         });
     })
     $(document).on("click",".pic-users",function(){
-        console.log($(this).attr("val"))
-        // $(document).find("#picUsers").attr("src","../pic_cards/"+$(this).attr("val"))
-    })    
+        $(document).find("#picUsers").attr("src","pic_cards/"+$(this).attr("val"))
+    })
+    $("#formInsertUsers").on("submit",function(e){
+        $.ajaxSetup({
+            cache: false,
+            contentType: false,
+            processData: false
+        }); 
+        e.preventDefault()
+         
+       var formData = new FormData($(this)[0])
+        $.post("Users/users.php",formData,function(data){
+            console.log(data); 
+            if(data){
+                info("success","Insert Success")
+            } else {
+                info("danger","Insert Fail")
+            } 
+            $.ajaxSetup({
+                cache: false,
+                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                processData: true
+            });           
+            getUsers()
+            $(document).find(".usersInsert-modal").modal('toggle');
+        });
+    })
+    $(document).on("click",".submitDeleteUsers",function(){
+        if(confirm("Do you want to delete the information?")){
+            $.ajax({
+                url: 'Users/users.php',
+                dataType:'json',
+                type: 'post',
+                data: { 
+                    deleteUsers: true, 
+                    device_id: $(this).attr("id"),
+                },  // data to submit
+                success: function (data, status) {
+                    console.log(data)
+                    if(data){
+                        info("success","Delete Success")
+                    } else {
+                        info("danger","Delete Fail")
+                    }
+                    getUsers()
+                },
+                error: function ( errorMessage) {
+                    console.dir('Error' + errorMessage);
+                }
+            })
+        }
+    })
+
 })

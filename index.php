@@ -335,7 +335,7 @@
         <input type="hidden" name="device_idEdit" class="form-control" id="device_idEdit">
           <div class="form-group">
             <label for="users_idEdit">ID :</label>
-            <input type="text" name="user_idEdit" class="form-control" id="user_idEdit" >
+            <input type="text" name="user_idEdit" class="form-control" maxlength="13" id="user_idEdit" >
           </div>
           <div class="form-group">
             <label for="nameUEdit">name:</label>
@@ -343,7 +343,7 @@
           </div>
           <div class="form-group">
             <label for="phone_numberEdit">phone:</label>
-            <input type="number" name="phone_numberEdit" class="form-control" id="phone_numberEdit" required>
+            <input type="text" name="phone_numberEdit" class="form-control" id="phone_numberEdit" maxlength="10" required>
           </div>
           <div class="form-group">
             <label for="picEdit">picture:</label>
@@ -371,28 +371,29 @@
         <h4 class="modal-title">Insert Users</h4>
       </div>
       <div class="modal-body">
-        <form action="javascript:void(0);" enctype="multipart/form-data">
+        <form action="" id="formInsertUsers" enctype="multipart/form-data">
+          <input type="hidden" name="insertUsers" value="true">
           <div class="form-group">
             <label for="device_idInsert">Device ID :</label>
-            <input type="text" class="form-control" id="device_idInsert" required>
+            <input type="text" name="device_idInsert" class="form-control" id="device_idInsert" required>
           </div>
           <div class="form-group">
             <label for="users_idInsert">ID :</label>
-            <input type="text" class="form-control" id="users_idInsert" >
+            <input type="text" name="user_idInsert" class="form-control" id="users_idInsert" maxlength="13">
           </div>
           <div class="form-group">
             <label for="nameUInsert">name:</label>
-            <input type="text" class="form-control" id="nameUInsert" >
+            <input type="text" name="nameUInsert" class="form-control" id="nameUInsert" >
           </div>
           <div class="form-group">
             <label for="phon_numberInsert">phone:</label>
-            <input type="number" class="form-control" id="phon_numberInsert" required>
+            <input type="number" name="phone_numberInsert" class="form-control" id="phone_numberInsert" maxlength="10" required>
           </div>
           <div class="form-group">
             <label for="picInsert">picture:</label>
-            <input type="file" class="form-control" id="picInsert" >
+            <input type="file" name="picInsert" class="form-control" id="picInsert">
           </div>
-          <button type="submit" class="btn btn-warning" id="submitInsertUsers">Insert</button>
+          <button type="submit" class="btn btn-primary" id="submitInsertUsers">Insert</button>
         </form>
       </div>
       <div class="modal-footer">
@@ -414,7 +415,7 @@
         <h4 class="modal-title">Pic Users</h4>
       </div>
       <div class="modal-body" >
-        <img src="pic_cards/1234567890.jpg" alt="" id="picUsers" width="500" height="350">
+        <img src="" alt="" id="picUsers" width="500" height="350">
       </div>
       <div class="modal-footer">
         <button class="btn btn-default"  data-dismiss="modal">Close</button>

@@ -49,35 +49,39 @@
         echo json_encode($data);
     }
     if(!empty($_REQUEST["editUsers"])){
-        if(move_uploaded_file($_FILES["picEdit"]["tmp_name"],"../pic_cards/".$_REQUEST["phone_numberEdit"].".jpg")){
+        move_uploaded_file($_FILES["picEdit"]["tmp_name"],"../pic_cards/".$_REQUEST["phone_numberEdit"].".jpg");
         $device_id = $_REQUEST["device_idEdit"];
         $user_id = $_REQUEST["user_idEdit"];
         $name = $_REQUEST["nameUEdit"];
         $phone_number = $_REQUEST["phone_numberEdit"];
-        
         $pic_card = $_REQUEST["phone_numberEdit"].".jpg";
         $sqlEdit = "update users set user_id = '".$user_id."',name = '".$name."',phone_number = '".$phone_number."',pic_card = '".$pic_card."' where device_id='".$device_id."'";
         $resEdit = mysqli_query($conn,$sqlEdit);
         echo json_encode($resEdit);
-        } else {
-            echo json_encode(move_uploaded_file($_REQUEST["picEdit"]["tmp_name"],"../pic_cards/".$_REQUEST["phone_number"]));
-        }
+
     }
     if(!empty($_REQUEST["insertUsers"])){
-        $device_id = $_REQUEST["device_id"];
-        $user_id = $_REQUEST["user_id"];
-        $name = $_REQUEST["name"];
-        $phone_number = $_REQUEST["phone_number"];
-        $pic_card = $_REQUEST["pic_card"];
-        $user_date = $_REQUEST["user_date"];
-        $sqlInsert = "insert into users (device_id,user_id,phone_number,name,pic_card,user_date) values('".$device_id."','".$user_id."', '".$phone_number."', '".$name."', '".$pic_card."', '".$user_date."')";
+        move_uploaded_file($_FILES["picInsert"]["tmp_name"],"../pic_cards/".$_REQUEST["phone_numberInsert"].".jpg");
+        $device_id = $_REQUEST["device_idInsert"];
+        $user_id = $_REQUEST["user_idInsert"];
+        $name = $_REQUEST["nameUInsert"];
+        $phone_number = $_REQUEST["phone_numberInsert"];
+        $pic_card = $_REQUEST["phone_numberInsert"].".jpg";
+        $sqlInsert = "insert into users (device_id,user_id,phone_number,name,pic_card) values('".$device_id."','".$user_id."', '".$phone_number."', '".$name."', '".$pic_card."')";
         $resInsert = mysqli_query($conn,$sqlInsert);
         echo json_encode($resInsert);
     }
     if(!empty($_REQUEST["deleteUsers"])){
         $device_id = $_REQUEST["device_id"];
-        $sqlDelete = "delete from users where device_id ='".$device_id."'";
-        $resDelete = mysqli_query($conn,$sqlDelete);
-        echo json_encode($resDelete);
+
+        $sqlDeleteLog = "delete from user_log where device_id ='".$device_id."'";
+        $resDeleteLog = mysqli_query($conn,$sqlDeleteLog);
+        if($resDeleteLog){
+            $sqlDelete = "delete from users where device_id ='".$device_id."'";
+            $resDelete = mysqli_query($conn,$sqlDelete);
+            echo json_encode($resDelete);
+        } else {
+            echo json_encode($resDeleteLog);
+        }
     }
 ?>

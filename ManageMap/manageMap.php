@@ -74,8 +74,14 @@
     }
     if(!empty($_REQUEST["deleteMaps"])){
         $uuid = $_REQUEST["uuid"];
-        $sqlDelete = "delete from maps where uuid='".$uuid."'";
-        $resDelete = mysqli_query($conn,$sqlDelete);
-        echo json_encode($resDelete);
+        $sqlDeleteLog = "delete from user_log where uuid ='".$uuid."'";
+        $resDeleteLog = mysqli_query($conn,$sqlDeleteLog);
+        if($resDeleteLog){
+            $sqlDelete = "delete from maps where uuid='".$uuid."'";
+            $resDelete = mysqli_query($conn,$sqlDelete);
+            echo json_encode($resDelete);
+        } else {
+            echo json_encode($resDeleteLog);
+        }
     }
 ?>

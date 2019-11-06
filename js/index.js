@@ -18,14 +18,17 @@ $(document).ready(function(){
         });
     })
     $(document).on("change","#route",function(){
+        let route = $(this).val()
         pointID = ""
         $.ajax({
             url: 'CreateMap/createMap.php',
             dataType:'json',
             type: 'post',
-            data: { route: $(this).val() },  // data to submit
+            data: { route: route },  // data to submit
             success: function (data, status) {
+                $(document).find("#routeTxt").html(route)
                 $(document).find("#bgMap").html(data)
+                $(document).find("#bgMap").css('background-image', 'url("bgMaps/r' + route + '.jpg")');
             },
             error: function ( errorMessage) {
                 console.dir('Error' + errorMessage);

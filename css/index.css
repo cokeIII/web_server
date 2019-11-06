@@ -3,7 +3,13 @@
     width: 720px;
     height: 1520px;
     margin: 5% 0% 5% 10%;
-    position: relative
+    position: relative;
+    background-image: url("../bgMaps/r1.jpg");
+    /* Full height */
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 720px 1520px;
 }
 .points{
     background-color: rgb(226, 51, 51);

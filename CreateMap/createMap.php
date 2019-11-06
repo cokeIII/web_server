@@ -37,8 +37,12 @@ if(!empty($_REQUEST["createMap"])){
                     </select>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <input type="button" class="btn btn-primary mt-4" id="btnSaveMap" value="Save Map"/>
+            </div>
+            <div class="col-md-3">
+                <label for="bgMaps">Change background route<p id="routeTxt"></p></label>
+                <input type="file" class="form-control" id="bgMaps"/>
             </div>
         </div>
         <div id="bgMap" class="bg-map">'.$maps.'</div>

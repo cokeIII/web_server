@@ -11,6 +11,7 @@ $(document).ready(function(){
             data: { createMap: true },  // data to submit
             success: function (data, status) {
                 $("#display").html(data)
+                $(document).find("#routeTxt").html("1")
             },
             error: function ( errorMessage) {
                 console.dir('Error' + errorMessage);
@@ -99,6 +100,46 @@ $(document).ready(function(){
         });
 
     })
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++
+    $(document).on("submit","#formBgMaps",function(e){
+        $.ajaxSetup({
+            cache: false,
+            contentType: false,
+            processData: false
+        }); 
+        e.preventDefault()
+         
+       var formData = new FormData($(this)[0])
+        $.post("CreateMap/bgMaps.php",formData,function(data){
+            console.log(data); 
+            if(data){
+                $.ajaxSetup({
+                    cache: false,
+                    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                    processData: true
+                });           
+    
+                info("success","Upload Success")
+                $.ajax({
+                    url: 'CreateMap/createMap.php',
+                    dataType:'json',
+                    type: 'post',
+                    data: { createMap: true },  // data to submit
+                    success: function (data, status) {
+                        $("#display").html(data)
+                        $(document).find("#routeTxt").html("1")
+                    },
+                    error: function ( errorMessage) {
+                        console.dir('Error' + errorMessage);
+                    }
+                });        
+            } else {
+                info("danger","Upload Fail")
+            } 
+
+        });
+    })
+
     function info(status,text){
         if(status == "success"){
             $(function() {

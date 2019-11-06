@@ -41,8 +41,17 @@ if(!empty($_REQUEST["createMap"])){
                 <input type="button" class="btn btn-primary mt-4" id="btnSaveMap" value="Save Map"/>
             </div>
             <div class="col-md-3">
-                <label for="bgMaps">Change background route<p id="routeTxt"></p></label>
-                <input type="file" class="form-control" id="bgMaps"/>
+                <form action="" id="formBgMaps" enctype="multipart/form-data">
+                    <label for="bgMaps">Change background route <p style="display:inline" id="routeTxt"></p></label>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <input type="file" name="fileToUpload" class="form-control" id="bgMaps"/>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary">Upload</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
         <div id="bgMap" class="bg-map">'.$maps.'</div>

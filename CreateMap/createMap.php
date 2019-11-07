@@ -54,14 +54,14 @@ if(!empty($_REQUEST["createMap"])){
                 </form>
             </div>
         </div>
-        <div id="bgMap" class="bg-map">'.$maps.'</div>
+        <div id="bgMap" class="bg-map"><img id="imgMaps" src="bgmaps/r1.jpg" width="720" height="1520" >'.$maps.'</div>
     </div>';
 
     echo json_encode($data);
 }
 if(!empty($_REQUEST["route"])){ 
     $route = $_REQUEST["route"];
-    $maps = '';
+    $maps = '<img id="imgMaps" src="" width="720" height="1520" >';
 
     $sqlGetMap = "select * from maps where route = $route";
     $resMap = mysqli_query($conn,$sqlGetMap);

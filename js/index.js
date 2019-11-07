@@ -13,6 +13,8 @@ $(document).ready(function(){
             success: function (data, status) {
                 $("#display").html(data)
                 $(document).find("#routeTxt").html("1")
+                d = new Date();
+                $(document).find("#imgMaps").attr('src', 'bgMaps/r' + route + '.jpg?'+d.getTime())
             },
             error: function ( errorMessage) {
                 console.dir('Error' + errorMessage);
@@ -21,6 +23,7 @@ $(document).ready(function(){
     })
     $(document).on("change","#route",function(){
         route = $(this).val()
+        console.log("bgMaps/r"+ route + ".jpg")
         pointID = ""
         $.ajax({
             url: 'CreateMap/createMap.php',
@@ -30,7 +33,10 @@ $(document).ready(function(){
             success: function (data, status) {
                 $(document).find("#routeTxt").html(route)
                 $(document).find("#bgMap").html(data)
-                $(document).find("#bgMap").css('background-image', 'url("bgMaps/r' + route + '.jpg")');
+                $(document).ready(function(){
+                    d = new Date();
+                    $(document).find("#imgMaps").attr('src', 'bgMaps/r' + route + '.jpg?'+d.getTime())
+                })
             },
             error: function ( errorMessage) {
                 console.dir('Error' + errorMessage);
@@ -120,6 +126,22 @@ $(document).ready(function(){
                     processData: true
                 });           
                 info("success","Upload Success")
+                // pointID = ""
+                // $.ajax({
+                //     url: 'CreateMap/createMap.php',
+                //     dataType:'json',
+                //     type: 'post',
+                //     data: { createMap: true },  // data to submit
+                //     success: function (data, status) {
+                //         $("#display").html(data)
+                //         $(document).find("#routeTxt").html("1")
+                //         $(document).find("#bgMap").css('background-image', 'url("bgMaps/r' + route + '.jpg")');
+                //     },
+                //     error: function ( errorMessage) {
+                //         console.dir('Error' + errorMessage);
+                //     }
+                // });
+        
                 location.reload(true)
             } else {
                 info("danger","Upload Fail")

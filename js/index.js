@@ -2,6 +2,7 @@ $(document).ready(function(){
     console.log("Run Script")
     //Create Map
     var pointID = "" 
+    var route = 1
     $(document).on("click","#menuCreate",function(){
         pointID = ""
         $.ajax({
@@ -19,7 +20,7 @@ $(document).ready(function(){
         });
     })
     $(document).on("change","#route",function(){
-        let route = $(this).val()
+        route = $(this).val()
         pointID = ""
         $.ajax({
             url: 'CreateMap/createMap.php',
@@ -100,7 +101,6 @@ $(document).ready(function(){
         });
 
     })
-    //+++++++++++++++++++++++++++++++++++++++++++++++++++
     $(document).on("submit","#formBgMaps",function(e){
         $.ajaxSetup({
             cache: false,
@@ -110,6 +110,7 @@ $(document).ready(function(){
         e.preventDefault()
          
        var formData = new FormData($(this)[0])
+       formData.append("route", route);
         $.post("CreateMap/bgMaps.php",formData,function(data){
             console.log(data); 
             if(data){
@@ -118,21 +119,8 @@ $(document).ready(function(){
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     processData: true
                 });           
-    
                 info("success","Upload Success")
-                $.ajax({
-                    url: 'CreateMap/createMap.php',
-                    dataType:'json',
-                    type: 'post',
-                    data: { createMap: true },  // data to submit
-                    success: function (data, status) {
-                        $("#display").html(data)
-                        $(document).find("#routeTxt").html("1")
-                    },
-                    error: function ( errorMessage) {
-                        console.dir('Error' + errorMessage);
-                    }
-                });        
+                location.reload(true)
             } else {
                 info("danger","Upload Fail")
             } 

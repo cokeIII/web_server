@@ -18,7 +18,7 @@
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
-  <link href="css/index.css" rel="stylesheet">
+  <link href="css/index.css?version=51" rel="stylesheet"  id="mainCss" type="text/css">
   <?php include "connect.php"; ?>
 
 </head>

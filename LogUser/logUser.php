@@ -45,7 +45,7 @@ if(!empty($_REQUEST["logUser"])){
                     <td><a href="#" val="'.$rowMap["uuid"].'" class="detailPoint" data-toggle="modal" data-target="#myModal">detail</a></td>
                 </tr>';
  
-        $maps.='<div selected="true" id="'.$rowMap["uuid"].'" class="point" style="left:'.($rowMap["x"]).'%;
+        $maps.='<div id="'.$rowMap["uuid"].'" class="pointL" style="left:'.($rowMap["x"]).'%;
                             top: '.($rowMap["y"]).'%;
                             background-color: rgb(226, 51, 51);
                             border: 4px solid #73AD21;
@@ -68,7 +68,7 @@ if(!empty($_REQUEST["logUser"])){
             <div  class="offset-5 txt-route" id="nameRoute"></div>
         </div>
         <div class="row">
-            <div id="bgMap" class="col-md-5 bg-map">'.$maps.'</div>
+            <div class="col-md-5 bg-map"><img id="imgMaps" src="bgMaps/r1.jpg" width="460" height="1520" ><div  id="bgMapL">'.$maps.'</div></div>
             <div class="col-md-5">
                 <table class="table" style="margin-top: 12%;">
                     <thead class="thead-dark">
@@ -101,7 +101,7 @@ if(!empty($_REQUEST["route"])){
             <td><a href="#" val="'.$rowMap["uuid"].'" class="detailPoint" data-toggle="modal" data-target="#myModal" >detail</a></td>
         </tr>';
 
-        $maps.='<div selected="true" id="'.$rowMap["uuid"].'" class="point" style="left:'.($rowMap["x"]).'%;
+        $maps.='<div  id="'.$rowMap["uuid"].'" class="pointL" style="left:'.($rowMap["x"]).'%;
                             top: '.($rowMap["y"]).'%;
                             background-color: rgb(226, 51, 51);
                             border: 4px solid #73AD21;

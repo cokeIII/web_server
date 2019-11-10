@@ -126,22 +126,7 @@ $(document).ready(function(){
                     processData: true
                 });           
                 info("success","Upload Success")
-                // pointID = ""
-                // $.ajax({
-                //     url: 'CreateMap/createMap.php',
-                //     dataType:'json',
-                //     type: 'post',
-                //     data: { createMap: true },  // data to submit
-                //     success: function (data, status) {
-                //         $("#display").html(data)
-                //         $(document).find("#routeTxt").html("1")
-                //         $(document).find("#bgMap").css('background-image', 'url("bgMaps/r' + route + '.jpg")');
-                //     },
-                //     error: function ( errorMessage) {
-                //         console.dir('Error' + errorMessage);
-                //     }
-                // });
-        
+
                 location.reload(true)
             } else {
                 info("danger","Upload Fail")
@@ -208,7 +193,7 @@ $(document).ready(function(){
         })
     })
     $(document).on("click",".menu-log",function(){
-        console.log($(this).attr("id"))
+        let R = $(this).attr("id")
         $(document).find("#nameRoute").html('ROUTE '+$(this).attr("id"))
         $.ajax({
             url: 'LogUser/logUser.php',
@@ -216,8 +201,11 @@ $(document).ready(function(){
             type: 'post',
             data: { route: $(this).attr("id") },  // data to submit
             success: function (data, status) {
-                $(document).find("#bgMap").html(data.maps)
+                $(document).find("#bgMapL").html(data.maps)
                 $(document).find("#Tmaps").html(data.Tmaps)
+                d = new Date();
+                $(document).find("#imgMaps").attr('src', 'bgMaps/r' + R + '.jpg?'+d.getTime())
+
             },
             error: function ( errorMessage) {
                 console.dir('Error' + errorMessage);

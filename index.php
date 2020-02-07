@@ -22,6 +22,9 @@
   <?php include "connect.php"; ?>
 
 </head>
+<style>
+.top{margin-top: -20px;}
+</style>
 
 <body id="page-top">
 
@@ -35,17 +38,118 @@
     <!-- Sidebar -->
     <?php include "sideBar.php";?>
     <div id="content-wrapper">
-
       <div class="container-fluid">
-        <div style="height:50px;"><div id="info"></div></div>
-        <div id="display"></div>
-      </div>
-      <!-- /.container-fluid -->
+        <div style="height:50px;">
+          <div id="info"></div>
+        </div>
+        <div id="display">
+          <div class="row top text-right ">
+            <div class="col-md-1">
+              <img src="img/icon.png" class="top" style="width:80%">
+            </div>
+            <div class=" col-md-4 text-left"style="color:#AAAAAA; background-color:;">
+              <h4 class="top"><b>OFF-TRACK ALERT SYSTEM</b></h4>
+              <h4 >ระบบแจ้งเตือนการออกนอกเส้นทาง:</h4>
+            </div>
+                  <!-- <div class=" col-sm-1 col-md-1"><img src="img/" style="width:100%"></div>
+                  <div class=" col-sm-1 col-md-1"><img src="img/" style="width:100%"></div>
+                  <div class=" col-sm-1 col-md-1"><img src="img/" style="width:100%"></div>
+                  <div class=" col-sm-1 col-md-1"><img src="img/" style="width:100%"></div>
+                  <div class=" col-sm-1 col-md-1"><img src="img/" style="width:100%"></div>
+                  <div class=" col-sm-1 col-md-1"><img src="img/" style="width:100%"></div>
+                  <div class=" col-sm-1 col-md-1"><img src="img/" style="width:100%"></div>
+                  <div class=" col-sm-1 col-md-1"><img src="img/" style="width:100%"></div> -->
+          </div>
+          <div class="row ">
+            <div class=" col-sm-12 col-md-12 text-center ">
+              <img src="img/78785138_432629684352366_7393726809256230912_n.png" style="width:11%">
+              <img src="img/78785138_432629684352366_7393726809256230912_n.png" style="width:11%">
+            </div>
+          </div>
+          <div class="row ">
+            <div class=" col-sm-12 col-md-12 text-center "><img src="img/setIO.png" class="top" style="width:13%"><img src="img/setAN.png" class="top" style="width:13%"></div> 
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 text-center " style=""><br><h2 class="text-muted">Setup Application</h2><BR></div>
+            <div class="col-md-2"></div>
+          </div>
+          <div class="row ">
+            <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+            <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+            <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+            <div class=" col-sm-2 col-md-2 text-right"><img src="img/79290086_1321026251402321_4641371651261333504_n.jpg" style="width:80%"></div>
+            <div class=" col-sm-2 col-md-2 text-center"><img src="img/78919685_1321026104735669_5886422283131551744_n.jpg" style="width:80%"></div>
+            <div class=" col-sm-2 col-md-2 text-left"><img src="img/78858148_508563379741014_3512251120242130944_n.png" style="width:80%"></div>
+            <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+            <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+            <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-4 text-center" style=""><br><h6 class="text-muted  text-right">   Download: http://202.129.16.68/~offtduac/offduac.apk </h6></div>
+            <div class="col-md-5"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-center " style=""><br><br><h2 class="text-muted">Implementation</h2><br></div>
+            <!-- <div class="col-md-6 text-center bgtest" style=""><br><br><h2 class="text-muted">Setup Application</h2></div> -->
+          </div>
+          <div class="row">
+            <div class="col-md-6 text-center " style="">
+              <img src="img/ibeaconpattern.png" style="width:80%">
+            </div>
+            <div class="col-md-6 text-center  " style=" ">
+                <p class="text-left">iBeacon</p>
+                <p class="text-left">This is used for user facing services such as retail marketing and visitor spaces such as museums. It works on iOS and Android and needs your app to be installed by end-users. See the article on trigger data and the solutions directory for ready-made server solutions that use iBeacon.</p>
+                <p class="text-left">Sensing</p>
+                <p class="text-left">This is used for IoT proximity and sensing scenarios. Apps or a Bluetooth gateway read sensor data and forward it to a server. The Bluetooth part can also use Bluetooth mesh to relay data across a site or area.</p>
+                <p class="text-left">Tracking</p>
+                <p class="text-left">This is used for tracking items or people with an audio alarm on the phone and/or beacon if the item being tracked goes out of range. It can also be used to detect a beacon button press and cause something to happen, for example take a camera photo, on the phone.
+                                    This scenario uses the advertising data to detect beacons and Bluetooth GATT to connect to them.</p>
+            </div>
+          </div>
 
-
+          <div class="row">
+              <div class="col-md-12 text-center"><BR></div>
+          </div>
+          <div class="row">
+            <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+            <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+            <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+            <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+            <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+            <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+            <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+            <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+            <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+            <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+            <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+            <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 text-center " style=""><br><h2 class="text-muted">Settings iBeacon</h2><BR></div>
+            <div class="col-md-2"></div>
+          </div>
+          <div class="row ">
+              <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+              <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+              <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+              <div class=" col-sm-2 col-md-2 text-right"><img src="img/79151290_452539855446670_8174389715768705024_n.png" style="width:80%"></div>
+              <div class=" col-sm-2 col-md-2 text-center"><img src="img/79925532_1798397696957547_5051774811689189376_n.png" style="width:80%"></div>
+              <div class=" col-sm-2 col-md-2 text-left"><img src="img/79229027_3465565780150821_1408827604701544448_n.png" style="width:80%"></div>
+              <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+              <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+              <div class=" col-sm-1 col-md-1"><img src="" style="width:100%"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-12"><br/></div>
+            <div class="col-md-12"><br/></div>
+            <div class="col-md-12"><br/></div>
+          </div>
+        </div>
     </div>
-    <!-- /.content-wrapper -->
-    
+    <!-- /.content-wrapper -->   
   </div>
   <!-- Sticky Footer -->
   <?php include "foot.php"; ?>
@@ -71,7 +175,6 @@
   <!--  Script this page -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
   <script>
-    
     var lookupMaps = {}
       // localStorage.clear();
     if(!localStorage["lookupDetours"]){
@@ -94,7 +197,7 @@
       })
     })
 
-    var socket = io.connect('http://localhost:3000');
+    var socket = io.connect('http://202.129.16.68:7778');
     socket.on('connect',function(data) {
         // console.log(data)
         socket.emit('join','Hello world from client');
@@ -106,6 +209,7 @@
         console.log(data)
     })
     socket.on('updateUserLog',function(data){
+      console.log(data)
       $(document).find(".menu-log").removeClass("detours")
       $.each( lookupDetours, function( key, value ) {
         delete lookupDetours[key][data.deviceId]
@@ -114,21 +218,22 @@
       let deviceId = data.deviceId
       lookupDetours[data.uuid][deviceId] = data.status
       localStorage["lookupDetours"] = JSON.stringify(lookupDetours)
-      console.log(lookupDetours)
+      // console.log(lookupDetours)
       if(Object.keys(lookupDetours).length){
         $.each( lookupMaps, function( key, value ) {
           let uuid = key
           let detours = false
           $.each( lookupDetours[key], function( key, value ) {
-            console.log(value)
-            if(value = "detours"){
+            // console.log(value)
+            if(value == "detours"){
               detours = true
+              // console.log(detours)
               $(document).find("#"+lookupMaps[uuid]).addClass("detours")
               return
             }
           })
           if(detours){
-            console.log(lookupMaps[uuid])
+            // console.log(lookupMaps[uuid])
             $(document).find("#tr"+uuid.replace(/\:/g, '')).addClass("detours")
           } else {
             $(document).find("#tr"+uuid.replace(/\:/g, '')).removeClass("detours")
@@ -190,12 +295,20 @@
           </tbody>
         </table>
       </div>
+
+
+
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
+
+
+
+
+
 <!-- Modal Picture-->
 <div id="picModal" class="modal fade pic-modal" role="dialog">
   <div class="modal-dialog">
@@ -229,9 +342,13 @@
       </div>
       <div class="modal-body">
         <form action="javascript:void(0);">
-          <div class="form-group">
+        <div class="form-group">
             <label for="uuidEdit">UUID :</label>
             <input type="text" class="form-control" id="uuidEdit" readonly>
+          </div>
+          <div class="form-group">
+            <label for="uuid_iosEdit">UUID IOS :</label>
+            <input type="text" class="form-control" id="uuid_iosEdit">
           </div>
           <div class="form-group">
             <label for="xEdit">x:</label>
@@ -280,9 +397,13 @@
       </div>
       <div class="modal-body">
         <form action="javascript:void(0);">
-          <div class="form-group">
+        <div class="form-group">
             <label for="uuidInsert">UUID :</label>
             <input type="text" class="form-control" id="uuidInsert" required>
+          </div>
+          <div class="form-group">
+            <label for="uuid_iosInsert">UUID IOS :</label>
+            <input type="text" class="form-control" id="uuid_iosInsert" required>
           </div>
           <div class="form-group">
             <label for="xInsert">x:</label>

@@ -10,6 +10,7 @@
                     <table class="table" id="tableMaps">
                     <thead>
                         <th>UUID</th>
+                        <th>UUID_IOS</th>
                         <th>x</th>
                         <th>y</th>
                         <th>name</th>
@@ -23,6 +24,7 @@
         while($rowGet = mysqli_fetch_array($resGet)){
             $tr.='<tr>
                 <td>'.$rowGet["uuid"].'</td>
+                <td>'.$rowGet["uuid_ios"].'</td>
                 <td>'.$rowGet["x"].'</td>
                 <td>'.$rowGet["y"].'</td>
                 <td>'.$rowGet["name"].'</td>
@@ -41,6 +43,7 @@
         $resGetDetail = mysqli_query($conn,$sqlGetDetail);
         $data = [];
         while($rowGetDetail = mysqli_fetch_array($resGetDetail)){
+            $data["uuid_ios"] = $rowGetDetail["uuid_ios"];
             $data["uuid"] = $rowGetDetail["uuid"];
             $data["x"] = $rowGetDetail["x"];
             $data["y"] = $rowGetDetail["y"];
@@ -57,7 +60,8 @@
         $name = $_REQUEST["name"];
         $route = $_REQUEST["route"];
         $status = $_REQUEST["status"];
-        $sqlEdit = "update maps set x = '".$x."',y = '".$y."',name = '".$name."',route = '".$route."',map_status = '".$status."' where uuid='".$uuid."'";
+        $uuid_ios = $_REQUEST["uuid_ios"];
+        $sqlEdit = "update maps set x = '".$x."',y = '".$y."',name = '".$name."',route = '".$route."',map_status = '".$status."', uuid_ios = '".$uuid_ios."' where uuid='".$uuid."'";
         $resEdit = mysqli_query($conn,$sqlEdit);
         echo json_encode($resEdit);
     }
@@ -68,7 +72,8 @@
         $name = $_REQUEST["name"];
         $route = $_REQUEST["route"];
         $status = $_REQUEST["status"];
-        $sqlInsert = "insert into maps (uuid,x,y,name,route,map_status) values('".$uuid."','".$x."', '".$y."', '".$name."', '".$route."', '".$status."')";
+        $uuid_ios = $_REQUEST["uuid_ios"];
+        $sqlInsert = "insert into maps (uuid,uuid_ios,x,y,name,route,map_status) values('".$uuid."','".$uuid_ios."','".$x."', '".$y."', '".$name."', '".$route."', '".$status."')";
         $resInsert = mysqli_query($conn,$sqlInsert);
         echo json_encode($resInsert);
     }

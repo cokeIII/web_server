@@ -2,7 +2,8 @@
     background-color: rgb(32, 25, 25);
     width: 720px;
     height: 1520px;
-    margin: 5% 0% 5% 10%;
+    margin: 5% 0% 5% 0%;
+    margin-top: 0%;
     position: relative;
     /* background-image: url("../bgMaps/r1.jpg?1222259157.415"); */
     /* Full height */
@@ -31,9 +32,69 @@
     background-color: rgb(196, 41, 41);
 }
 .fnish{
-    background-color: rgb(74, 223, 99);
+    background-color: rgb(109, 105, 105);
 }
 .traveling{
     background-color: rgb(234, 245, 79);
 }
 
+.testbg{
+    background-color: rgb(234, 245, 79);
+}
+
+.left{float: left;}
+.top{margin-top: 50px;}
+
+    
+.bk-center {
+            width: 120px;
+            height: 120px;
+            margin: 20px;
+            background: ;
+            float: inherit;
+    }
+    .right {
+        width: 45%;
+        height: 260px;
+            margin: 20px;
+            margin-top: 50px;
+            float: right;
+    }
+    .bk-reft { 
+        width: 50%;
+        height: 260px;
+        margin: 20px;
+        margin-top: 0px;
+        background: ;
+        float: left;
+    }
+    /* -----------------------user log------------------------------- */
+    
+    .left{float: left;}
+    .right{float: right;}
+    .top{margin-top: -50px;}
+
+    .bk-rightu {
+            margin: 5%;
+            margin-top: 0%;
+    
+    }
+    .rightmap{
+        margin: 5%;
+        margin-top: 10%;
+    }
+    .bk-reftu {
+        margin: 0%;
+        margin-top: 15%;
+
+    }
+    .rightt{
+        margin: 10%;
+
+    }
+    .tables{
+        width:80%!important;
+        height:20% !important;
+
+    }
+    /* ----------------------------------------------------- */

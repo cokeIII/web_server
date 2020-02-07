@@ -48,32 +48,39 @@ if(!empty($_REQUEST["logUser"])){
         $maps.='<div id="'.$rowMap["uuid"].'" class="pointL" style="left:'.($rowMap["x"]).'%;
                             top: '.($rowMap["y"]).'%;
                             background-color: rgb(226, 51, 51);
-                            border: 4px solid #73AD21;
+                            border: 1px solid #73AD21;
                             border-color: black;
-                            border-radius:  10%;
-                            width: 48px;
-                            height: 48px;
+                            border-radius:  50%;
+                            width: 37px;
+                            height: 37px;
                             position: absolute;
-                            font-size: 12px;
+                            font-size: 15px;
                             margin-bottom: 5%;
                 ">'.$rowMap["name"].'</div>';  
     }
+
     $data = '
 
-    <div id="mapContent">
-        <div class="row">
-            '.$route.'
-        </div>
-        <div class="row" >
-            <div  class="offset-5 txt-route" id="nameRoute"></div>
-        </div>
-        <div class="row">
-            <div class="col-md-5 bg-map"><img id="imgMaps" src="bgMaps/r1.jpg" width="460" height="1520" ><div  id="bgMapL">'.$maps.'</div></div>
-            <div class="col-md-5">
-                <table class="table" style="margin-top: 12%;">
-                    <thead class="thead-dark">
+
+    <div id="mapContent">  
+    <div class="col-md-12 bk">
+          <h5>Choose a route</h5> 
+          <div class="">'.$route.'</div>
+          <div  class="offset-0 txt-route" id="nameRoute"></div>
+    </div>
+  
+
+     <div class="row ">
+
+            <div class=" col-md-5 bk-rightu   " style="margin-top: 3%;">
+                <img id="imgMaps" src="bgMaps/r1.jpg" width="530px" height="1520px" ><div  id="bgMapL">'.$maps.'</div>
+            </div>
+            
+            <div class="col-md-5 " style="margin-top: -3%;">
+                <table class="table bk-reftu ">
+                    <thead class="thead-dark"style="background: #9966CC;">
                     <tr>
-                        <th scope="col">ponit</th>
+                        <th scope="col ">ponit</th>
                         <th scope="col">user count</th>
                         <th scope="col">detail</th>
                     </tr>
@@ -83,8 +90,14 @@ if(!empty($_REQUEST["logUser"])){
                     </tbody>
                 </table>
             </div>
+
         </div>
+
+
+
+        
     </div>';
+
     echo json_encode($data);
 }
 if(!empty($_REQUEST["route"])){ 
@@ -104,13 +117,13 @@ if(!empty($_REQUEST["route"])){
         $maps.='<div  id="'.$rowMap["uuid"].'" class="pointL" style="left:'.($rowMap["x"]).'%;
                             top: '.($rowMap["y"]).'%;
                             background-color: rgb(226, 51, 51);
-                            border: 4px solid #73AD21;
+                            border: 1px solid #73AD21;
                             border-color: black;
-                            border-radius:  10%;
-                            width: 48px;
-                            height: 48px;
+                            border-radius:  50%;
+                            width: 37px;
+                            height: 37px;
                             position: absolute;
-                            font-size: 12px;
+                            font-size: 15px;
                 ">'.$rowMap["name"].'</div>';  
     }
     $mapsData['Tmaps'] = $Tmaps;

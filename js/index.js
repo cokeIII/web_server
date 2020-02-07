@@ -1,5 +1,6 @@
 $(document).ready(function(){
     console.log("Run Script")
+
     //Create Map
     var pointID = "" 
     var route = 1
@@ -262,6 +263,7 @@ $(document).ready(function(){
             success: function (data, status) {
                 console.log(data)
                 $(document).find("#uuidEdit").val(data.uuid);
+		$(document).find("#uuid_iosEdit").val(data.uuid_ios);
                 $(document).find("#xEdit").val(data.x);
                 $(document).find("#yEdit").val(data.y);
                 $(document).find("#nameEdit").val(data.name);
@@ -281,6 +283,7 @@ $(document).ready(function(){
             data: { 
                 editMaps: true, 
                 uuid: $(document).find("#uuidEdit").val(),
+		uuid_ios: $(document).find("#uuid_iosEdit").val(),
                 x: $(document).find("#xEdit").val(),
                 y: $(document).find("#yEdit").val(),
                 name: $(document).find("#nameEdit").val(),
@@ -310,6 +313,7 @@ $(document).ready(function(){
             data: { 
                 insertMaps: true, 
                 uuid: $(document).find("#uuidInsert").val(),
+		        uuid_ios: $(document).find("#uuid_iosInsert").val(),
                 x: $(document).find("#xInsert").val(),
                 y: $(document).find("#yInsert").val(),
                 name: $(document).find("#nameInsert").val(),

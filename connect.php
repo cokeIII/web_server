@@ -2,7 +2,7 @@
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $db = "track_alert";
+    $db = "offtduac_trackalert";
     // Create connection
     $conn = new mysqli($servername, $username, $password,$db);
 

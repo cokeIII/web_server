@@ -369,9 +369,7 @@
           <div class="form-group">
             <label for="statusEdit">status:</label>
             <select id="statusEdit" class="form-control" required> 
-              <option value="N">N</option> 
-              <option value="S">S</option> 
-              <option value="E">E</option> 
+
             </select>
           </div>
           <button type="submit" class="btn btn-warning" id="submitEditMaps">Edit</button>
@@ -424,9 +422,7 @@
           <div class="form-group">
             <label for="statusInsert">status:</label>
             <select id="statusInsert" class="form-control" required> 
-              <option value="N">N</option> 
-              <option value="S">S</option> 
-              <option value="E">E</option> 
+
             </select>
           </div>
           <button type="submit" class="btn btn-primary" id="submitInsertMaps">Insert</button>

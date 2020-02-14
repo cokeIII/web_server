@@ -1,6 +1,6 @@
 $(document).ready(function(){
     console.log("Run Script")
-
+   
     //Create Map
     var pointID = "" 
     var route = 1
@@ -253,6 +253,21 @@ $(document).ready(function(){
     }
     $(document).on("click","#menuManageMap",function(){
         getMaps()
+         //OPTION MAPSSTATUS
+        $.ajax({
+            url: 'ManageMap/optionStatus.php',
+            dataType:'json',
+            type: 'post',
+            data: { ManageMap: true },  // data to submit
+            success: function (data, status) {
+                $(document).find("#statusInsert").html(data)
+                $(document).find("#statusEdit").html(data)
+            },
+            error: function ( errorMessage) {
+                console.dir('Error' + errorMessage);
+            }
+        });
+        
     })
     $(document).on("click",".mapsEdit",function(){
         $.ajax({
